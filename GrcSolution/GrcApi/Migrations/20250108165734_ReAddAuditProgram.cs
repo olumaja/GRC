@@ -1,0 +1,174 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace GrcApi.Migrations
+{
+    /// <inheritdoc />
+    public partial class ReAddAuditProgram : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "AuditProgramAuditExecution",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CommenceEngagementAuditexecutionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Team = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    RequesterName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    SubProcess = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    RiskDescription = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    ControlDescription = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    ControlObjective = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    ReviewProcedure = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    InformationRequired = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: true),
+                    AuditProgramCompleted = table.Column<bool>(type: "bit", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    WorkpaperStatus = table.Column<int>(type: "int", nullable: false),
+                    FindingStatus = table.Column<int>(type: "int", nullable: false),
+                    ReasonForRejection = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IsWorkPaperInitiated = table.Column<bool>(type: "bit", nullable: false),
+                    IsAuditFindingInitiated = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModifiedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditProgramAuditExecution", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditProgramAuditExecutionCommenceEngagementAuditexecution",
+                columns: table => new
+                {
+                    AuditProgramAuditExecutionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CommenceEngagementAuditexecutionsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditProgramAuditExecutionCommenceEngagementAuditexecution", x => new { x.AuditProgramAuditExecutionId, x.CommenceEngagementAuditexecutionsId });
+                    table.ForeignKey(
+                        name: "FK_AuditProgramAuditExecutionCommenceEngagementAuditexecution_AuditProgramAuditExecution_AuditProgramAuditExecutionId",
+                        column: x => x.AuditProgramAuditExecutionId,
+                        principalTable: "AuditProgramAuditExecution",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AuditProgramAuditExecutionCommenceEngagementAuditexecution_CommenceEngagementAuditexecution_CommenceEngagementAuditexecution~",
+                        column: x => x.CommenceEngagementAuditexecutionsId,
+                        principalTable: "CommenceEngagementAuditexecution",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkPaper",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AuditProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Team = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Reference = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    Reoccurrence = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    ExceptionsNoted = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    IssueSummary = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    RootCause = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    Impact = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    ReviewResult = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    Recommendation = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    IssueRating = table.Column<int>(type: "int", nullable: false),
+                    IsAuditFindingInitiated = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModifiedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkPaper", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkPaper_AuditProgramAuditExecution_AuditProgramId",
+                        column: x => x.AuditProgramId,
+                        principalTable: "AuditProgramAuditExecution",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditFindings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WorkerPaperId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Team = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ActionToResolve = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    ActionToPreventReoccurrence = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    ActionDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActionOwner = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    ActionOwnerUnit = table.Column<string>(type: "nvarchar(MAX)", maxLength: 50, nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModifiedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditFindings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AuditFindings_WorkPaper_WorkerPaperId",
+                        column: x => x.WorkerPaperId,
+                        principalTable: "WorkPaper",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AuditFindings_WorkerPaperId",
+                table: "AuditFindings",
+                column: "WorkerPaperId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AuditProgramAuditExecutionCommenceEngagementAuditexecution_CommenceEngagementAuditexecutionsId",
+                table: "AuditProgramAuditExecutionCommenceEngagementAuditexecution",
+                column: "CommenceEngagementAuditexecutionsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkPaper_AuditProgramId",
+                table: "WorkPaper",
+                column: "AuditProgramId",
+                unique: true);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "AuditFindings");
+
+            migrationBuilder.DropTable(
+                name: "AuditProgramAuditExecutionCommenceEngagementAuditexecution");
+
+            migrationBuilder.DropTable(
+                name: "WorkPaper");
+
+            migrationBuilder.DropTable(
+                name: "AuditProgramAuditExecution");
+        }
+    }
+}

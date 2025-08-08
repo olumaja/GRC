@@ -1,0 +1,111 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Arm.GrcApi.Modules.InfosecRiskAssessment
+{
+    public class AnnextureConfiguration : IEntityTypeConfiguration<Annexture>
+    {
+        public void Configure(EntityTypeBuilder<Annexture> builder)
+        {
+            builder.HasKey(m => m.Id);
+            builder.Property(m => m.Name).HasMaxLength(2000);
+            //unique constraint
+            builder.HasIndex(m => m.Name)
+            .IsUnique();
+
+            builder.HasData(
+                Annexture.Create(Guid.Parse("AC45486E-8579-468F-9FBB-24DAA710DB3C"), "A.5.1 Policies for Information Security"),
+                Annexture.Create(Guid.Parse("0C26B54F-B650-428F-B6C6-D6F62D82AE80"), "A.5.2 Information Security Roles and Responsibilities"),
+                Annexture.Create(Guid.Parse("5C34E4CB-19A7-4A6E-9D37-F1EE65F5A710"), "A.5.3 Segregation of Duties"),
+                Annexture.Create(Guid.Parse("B71927B2-E397-4CD0-A5EB-7E95036E152F"), "A.5.4 Management Responsibilities"),
+                Annexture.Create(Guid.Parse("81D5CCC7-3B5E-4E6F-8233-47A6E89F933B"), "A.5.5 Contact with Authorities"),
+                Annexture.Create(Guid.Parse("0EFB757A-D37E-46E2-A1E3-E995500B0255"), "A.5.6 Contact with Special Interest Groups"),
+                Annexture.Create(Guid.Parse("A0398302-909B-4F2E-86D9-A87FAB47C232"), "A.5.7 Threat Intelligence"),
+                Annexture.Create(Guid.Parse("67C69B44-7EF6-46C4-990A-716A479441A3"), "A.5.8 Information Security in Project Management"),
+                Annexture.Create(Guid.Parse("5D71E6F1-CB9F-40D5-97B6-9A4BA0A7C255"), "A.5.9 Inventory of Information and Other Associated Assets"),
+                Annexture.Create(Guid.Parse("EDB9018B-B2EC-4D1F-AAFD-178FF76A19E9"), "A.5.10 Acceptable Use of Information and Other Associated Assets"),
+                Annexture.Create(Guid.Parse("5518D071-3F94-45AA-B5FE-B873FA145835"), "A.5.11 Return of Assets"),
+                Annexture.Create(Guid.Parse("B0B76105-A212-4FE3-8A17-8BF9F6CE54EA"), "A.5.12 Classification of Information"),
+                Annexture.Create(Guid.Parse("CB4E42A6-C4FC-4C37-A6F8-959C47034D2B"), "A.5.13 Labelling of Information"),
+                Annexture.Create(Guid.Parse("C12F9698-CDDE-40AD-A114-DF0C70FC39B9"), "A.5.14 Information Transfer"),
+                Annexture.Create(Guid.Parse("342F41AF-3AC2-48D8-8981-CD1FB8426085"), "A.5.15 Access Control"),
+                Annexture.Create(Guid.Parse("8062C03B-D329-48FA-910F-0C89823E4AAC"), "A.5.16 Identity Management"),
+                Annexture.Create(Guid.Parse("74D88139-6018-45DC-902C-ABAB66797E14"), "A.5.17 Authentication Information"),
+                Annexture.Create(Guid.Parse("B02C6548-62F9-4C4E-A80C-E5B14C2950CD"), "A.5.18 Access Rights"),
+                Annexture.Create(Guid.Parse("C442387D-36A6-4227-B17B-E229912C2A79"), "A.5.19 Information Security in Supplier Relationships"),
+                Annexture.Create(Guid.Parse("BAFEF079-1A53-46AF-B955-3E8B77A0569F"), "A.5.20 Addressing Information Security within Supplier Agreements"),
+                Annexture.Create(Guid.Parse("0365FADE-3C4D-4E5E-85BF-A4E23CC249D1"), "A.5.21 Managing Information Security in the ICT Supply Chain"),
+                Annexture.Create(Guid.Parse("D0D0B293-09A2-4CCF-BCBF-9BDE376B8067"), "A.5.22 Monitoring, Review, and Change Management of Supplier Services"),
+                Annexture.Create(Guid.Parse("5586F93B-AB8C-4AF8-AA08-2AB7E578A6A5"), "A.5.24 Information Security Incident Management Planning and Preparation"),
+                Annexture.Create(Guid.Parse("A3D07ED3-2622-4310-9685-A6DAE9755759"), "A.5.25 Assessment and Decision on Information Security Events"),
+                Annexture.Create(Guid.Parse("23594615-35E3-44CE-8F15-A6D7E5354A87"), "A.5.26 Response to Information Security Incidents"),
+                Annexture.Create(Guid.Parse("1A22F98D-725D-44A3-A728-5C42A8C387DF"), "A.5.27 Learning from Information Security Incidents"),
+                Annexture.Create(Guid.Parse("7D243537-FF5E-4EED-99B4-1E510BB9A17B"), "A.5.28 Collection of Evidence"),
+                Annexture.Create(Guid.Parse("3FBD8208-357A-406E-B06B-EB5E167C1C11"), "A.5.29 Information Security during Disruption"),
+                Annexture.Create(Guid.Parse("5651FD80-618B-4707-9A31-25DBE2700E22"), "A.5.30 ICT Readiness for Business Continuity"),
+                Annexture.Create(Guid.Parse("AD82BBEE-2E64-4E90-833E-0C19CEDC0528"), "A.5.31 Legal, Statutory, Regulatory, and Contractual Requirements"),
+                Annexture.Create(Guid.Parse("18A961FC-826E-435F-97E7-642F6975A317"), "A.5.32 Intellectual Property Rights"),
+                Annexture.Create(Guid.Parse("C62DF7DE-CC2D-4C1A-A61C-D9964D0CE9F4"), "A.5.33 Protection of Records"),
+                Annexture.Create(Guid.Parse("2D1208B2-EDFD-4742-87B3-6AA9DE11531D"), "A.5.34 Privacy and Protection of PII"),
+                Annexture.Create(Guid.Parse("D5750F4C-AD57-49AB-8C2F-0D66E597F831"), "A.5.35 Independent Review of Information Security"),
+                Annexture.Create(Guid.Parse("72765E26-2F71-401D-B459-95A5D4C0011C"), "A.5.36 Compliance with Policies, Rules, and Standards for Information Security"),
+                Annexture.Create(Guid.Parse("9130C0B2-5654-49B5-86B1-E1C9C635E53F"), "A.5.37 Documented Operating Procedures"),
+                Annexture.Create(Guid.Parse("031F02F1-12C7-4A3C-B778-F3E80E0A6168"), "A.6.1 Screening"),
+                Annexture.Create(Guid.Parse("C30EEC80-8844-4364-BCB8-57065459CCD5"), "A.6.2 Terms and Conditions of Employment"),
+                Annexture.Create(Guid.Parse("FA79FC03-3F54-4686-B8CD-E352F9EB0391"), "A.6.3 Information Security Awareness, Education, and Training"),
+                Annexture.Create(Guid.Parse("440F05B0-7C7F-4E55-AD1A-3D5AFB85BE0F"), "A.6.4 Disciplinary Process"),
+                Annexture.Create(Guid.Parse("13BEB7A5-0A04-4320-B13C-814153C43060"), "A.6.5 Responsibilities after Termination or Change of Employment"),
+                Annexture.Create(Guid.Parse("62F637BF-01BE-4B55-B6DE-447D6579B16B"), "A.6.6 Confidentiality or Non-disclosure Agreements"),
+                Annexture.Create(Guid.Parse("3BFA46D2-256A-4089-A0DA-92836626653A"), "A.6.7 Remote Working"),
+                Annexture.Create(Guid.Parse("F5B9D0D2-39F3-4009-9228-DB2F674A1C55"), "A.6.8 Information Security Event Reporting"),
+                Annexture.Create(Guid.Parse("9FA14C05-DC41-477B-AFCA-84520CAAF2A9"), "A.7.1 Physical Security Perimeters"),
+                Annexture.Create(Guid.Parse("8E56BDD4-20C9-4FCE-BFB0-6E4F5EA5E438"), "A.7.2 Physical Entry"),
+                Annexture.Create(Guid.Parse("B68A412E-0F52-4FB9-B6B0-52A34471CBA8"), "A.7.3 Securing Offices, Rooms, and Facilities"),
+                Annexture.Create(Guid.Parse("91AF5609-EEAC-44B8-97D9-C9C169C2CCFA"), "A.7.4 Physical Security Monitoring"),
+                Annexture.Create(Guid.Parse("24DE8A04-CB07-419B-B455-F3E3BE4990B1"), "A.7.5 Protecting Against Physical and Environmental Threats"),
+                Annexture.Create(Guid.Parse("E53917D5-F5A2-4623-AFF2-79828197D43C"), "A.7.6 Working in Secure Areas"),
+                Annexture.Create(Guid.Parse("E11DFE71-1B18-41EC-95B2-FFE1258B369B"), "A.7.7 Clear Desk and Clear Screen"),
+                Annexture.Create(Guid.Parse("D77E0731-E007-4C62-A3ED-A748B06B328E"), "A.7.8 Equipment Siting and Protection"),
+                Annexture.Create(Guid.Parse("C38F4B0D-8F41-4E92-AA98-6A84DD1D2251"), "A.7.9 Security of Assets Off-Premises"),
+                Annexture.Create(Guid.Parse("E53CA697-DBA5-4C5D-913F-FE5A987D57F3"), "A.7.10 Storage Media"),
+                Annexture.Create(Guid.Parse("647FFF81-E207-49B4-B2A3-A577803AF7E6"), "A.7.11 Supporting Utilities"),
+                Annexture.Create(Guid.Parse("30CFC72F-7377-400B-96E8-2494597E30AB"), "A.7.12 Cabling Security"),
+                Annexture.Create(Guid.Parse("A4086EBC-44E7-48CE-83C3-C8633FE84346"), "A.7.13 Equipment Maintenance"),
+                Annexture.Create(Guid.Parse("197185F0-3071-4A92-BBE8-EB7EFB69FDDE"), "A.7.14 Secure Disposal or Re-use of Equipment"),
+                Annexture.Create(Guid.Parse("8FD5EEC3-A904-42AB-ADAC-A6B8F51D9F05"), "A.8.1 User Endpoint Devices"),
+                Annexture.Create(Guid.Parse("AA9AA89A-0F17-43C6-A841-FFA783CE58C8"), "A.8.2 Privileged Access Rights"),
+                Annexture.Create(Guid.Parse("34B0E48A-D2BB-4521-841C-A888B5EEAD61"), "A.8.3 Information Access Restriction"),
+                Annexture.Create(Guid.Parse("3F2EC051-1AAF-45DE-807F-E1FCB9A521CF"), "A.8.4 Access to Source Code"),
+                Annexture.Create(Guid.Parse("A21B993C-546A-40EA-A6FE-27FB722D5446"), "A.8.5 Secure Authentication"),
+                Annexture.Create(Guid.Parse("CC1092D4-8F57-468D-89F7-7179216CAD94"), "A.8.6 Capacity Management"),
+                Annexture.Create(Guid.Parse("8078B936-021D-4A76-B706-8E1CD46DD4E1"), "A.8.7 Protection Against Malware"),
+                Annexture.Create(Guid.Parse("A2F90C6E-E710-4740-ADAE-4E2F980A308A"), "A.8.8 Management of Technical Vulnerabilities"),
+                Annexture.Create(Guid.Parse("D56C6D2A-22D9-4D67-B343-1EB067AA0EFC"), "A.8.9 Configuration Management"),
+                Annexture.Create(Guid.Parse("7BA55426-AB74-42B8-BBD9-7AF8D76BB55F"), "A.8.10 Information Deletion"),
+                Annexture.Create(Guid.Parse("22445818-EF3B-4AE6-AA17-42B39703502B"), "A.8.11 Data Masking"),
+                Annexture.Create(Guid.Parse("60E73B34-B4E5-4C40-BD19-A9D70FB86BC2"), "A.8.12 Data Leakage Prevention"),
+                Annexture.Create(Guid.Parse("E02E3770-8207-48D5-AFEB-81FCEE41F8EE"), "A.8.13 Information Backup"),
+                Annexture.Create(Guid.Parse("B0B58706-B882-4AFD-90A6-4E50050CE6AC"), "A.8.14 Redundancy of Information Processing Facilities"),
+                Annexture.Create(Guid.Parse("ECCEA2EB-CFD2-4486-B045-5D0ED5069B4C"), "A.8.15 Logging"),
+                Annexture.Create(Guid.Parse("631C7930-0F74-41A9-B609-6C23ACDC5E18"), "A.8.16 Monitoring Activities"),
+                Annexture.Create(Guid.Parse("AB878CDC-0A61-4815-90F9-DC7844D1935A"), "A.8.17 Clock Synchronization"),
+                Annexture.Create(Guid.Parse("5E6A0550-8440-4A8E-AF9D-8EBAEEF7BEFE"), "A.8.18 Use of Privileged Utility Programs"),
+                Annexture.Create(Guid.Parse("C3A6C745-BEC9-4B52-8C37-6C1C2196D9FB"), "A.8.19 Installation of Software on Operational Systems"),
+                Annexture.Create(Guid.Parse("F8A2CE43-EC8E-4F30-A732-B313AE441940"), "A.8.20 Network Security"),
+                Annexture.Create(Guid.Parse("ABDBA944-BC56-4BB3-B780-5F0BE5AB50BF"), "A.8.21 Security of Network Services"),
+                Annexture.Create(Guid.Parse("AEE25F20-2267-4EB1-BCAC-4D9EBC3764E0"), "A.8.22 Segregation of Networks"),
+                Annexture.Create(Guid.Parse("5DF02208-099C-4916-B0C4-ADC8870725CA"), "A.8.23 Web Filtering"),
+                Annexture.Create(Guid.Parse("592AEC8E-070C-4646-8974-33866E4E0221"), "A.8.25 Secure Development Life Cycle"),
+                Annexture.Create(Guid.Parse("3EB9F678-02DF-4230-B57E-3BED61C6D4C2"), "A.8.26 Application Security Requirements"),
+                Annexture.Create(Guid.Parse("152D511D-F82E-4AE6-BC05-2FAB7E568856"), "A.8.27 Secure System Architecture and Engineering Principles"),
+                Annexture.Create(Guid.Parse("0B9A3AFB-C070-49AA-A0BD-59CF4CF7F5AF"), "A.8.28 Secure Coding"),
+                Annexture.Create(Guid.Parse("C487C724-041E-4C8A-92B0-7FAE9B744AFC"), "A.8.29 Security Testing in Development and Acceptance"),
+                Annexture.Create(Guid.Parse("D9EECAEB-879B-4BEF-8A97-87A54573A2CF"), "A.8.30 Outsourced Development"),
+                Annexture.Create(Guid.Parse("87FA2237-EF81-4EBC-9EEA-4BB9B780E059"), "A.8.31 Separation of Development, Test, and Production Environments"),
+                Annexture.Create(Guid.Parse("2FD07E01-912D-4F6D-9A0E-60D529DB65D6"), "A.8.32 Change Management"),
+                Annexture.Create(Guid.Parse("A1225816-8D4C-423D-B09E-837D471086E4"), "A.8.33 Test Information"),
+                Annexture.Create(Guid.Parse("11E035B2-088E-4602-BEB8-84CBD50A5142"), "A.8.34 Protection of Information Systems during Audit Testing")
+            );
+        }
+    }
+}
